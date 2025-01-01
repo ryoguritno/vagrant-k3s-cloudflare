@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflare-tunnel-agent
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+      name: ''
+      namespace: default
+      server: 'https://kubernetes.default.svc'
+  source:
+    path: .
+    repoURL: 'https://github.com/ryoguritno/vagrant-k3s-cloudflare.git'
+    targetRevision: master
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
