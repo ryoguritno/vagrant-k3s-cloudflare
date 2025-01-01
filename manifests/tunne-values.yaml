@@ -1,0 +1,19 @@
+cloudflare:
+  tunnelName: "k3s-tunnel-home"
+  tunnelId: "51707c3a-864b-4391-84a2-fc74820235b5"
+  secretName: "tunnel-credentials"
+  ingress:
+    - hostname: "*.arkelo.net"
+      service: "https://ingress-nginx-controller.kube-system.svc.cluster.local:443"
+      originRequest:
+        noTLSVerify: true
+
+resources:
+  limits:
+    cpu: "100m"
+    memory: "128Mi"
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+
+replicaCount: 1
